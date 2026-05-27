@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학생 관리 홈페이지</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <div class="container">
+        <h1>학생 출석 및 성적 관리 시스템</h1>
+        
+        <div class="main-row">
+            
+            <div class="left-content">
+                <div class="search">
+                    <input type="date" id="current-date">
+                    <input type="text" placeholder="이름 또는 학번">
+                    <select>
+                        <option value="">정렬 기준 선택</option>
+                        <option value="idAsc">학번 오름차순</option>
+                        <option value="nameAsc">이름 가나다순</option>
+                        <option value="scoreDesc">성적 높은순</option>
+                    </select>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="student-box">
+                        <thead>
+                            <tr>
+                                <th>학번</th>
+                                <th>이름</th>
+                                <th>성적 수정</th>
+                                <th>학과</th>
+                                <th>출석 상태</th>
+                                <th>관리</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="student-add">
+                <h3>학생 추가</h3>
+                <input type="text" placeholder="학번 입력">
+                <input type="text" placeholder="이름 입력">
+                <input type="text" placeholder="성적 입력">
+                <input type="text" placeholder="학과 입력">
+                <button type="button">학생 추가</button>
+            </div>
+
+        </div> </div>
+
+    <!-- 출석 확인 모델 -->
+    <div id="attendance-modal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <span id="modal-title"></span>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-summary" id="modal-summary"></div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>

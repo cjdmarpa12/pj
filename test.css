@@ -1,0 +1,275 @@
+body {
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center;
+    font-family: sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1 { /* 타이틀 */
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: #1a1a1a;
+    width: 100%;
+    max-width: 1200px;
+    text-align: left;
+}
+
+.container { /* 화면 전체 틀 */
+    width: 100%;
+    max-width: 1200px;
+}
+
+.main-row { /* 목록창 추가창 구분 */
+    display: flex;
+    gap: 30px;
+    align-items: flex-start; /* 위에서부터 정렬 */
+    width: 100%;
+}
+
+.left-content { /* 우측 전체 컨테이너 */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search { /* 검색기능 */
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.student-add { /* 학생추가란 */
+    width: 280px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.student-add h3 { /* '학생추가' 텍스트 */
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #2d3748;
+    text-align: center;
+    font-weight: bold;
+}
+
+input, select, button { /* 학생추가란 입력칸 */
+    padding: 12px 16px;
+    border: 1px solid #cef4da;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box; /* 입력란 크기 조절 */
+    width: 100%;
+}
+
+.search input, .search select {
+    width: auto;
+}
+.search input[type="text"] { /* 검색칸 */
+    width: 250px;
+}
+
+#current-date { /* 날짜 입력 칸 */
+    cursor: pointer;
+    background-color: white;
+}
+
+.student-add button { /* 학생추가 버튼 */
+    background-color: skyblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 5px;
+    transition: background 0.2s;
+}
+
+.student-add button:hover { /* 버튼에 마우스 올려놓을 시 디자인 */
+    background-color: #7ec0ee;
+}
+
+.table-wrapper {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.student-box { /* 학생목록창 */
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.student-box th, .student-box td {  /* 작성되지않은 학생목록창 */
+    border: none;
+    border-bottom: 1px solid #edf2f7;
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.student-box th { /* 작성된 목록 창 */
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.student-box tbody tr:last-child td { /* 목록 창 첫번째 줄 ( 학번/이름 등 표시 ) */
+    border-bottom: none;
+}
+
+.score, .attendance { /* 목록창 내부 성적/출석 상태 관리 */
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #cbd5e0;
+    width: auto;
+}
+
+.bt-del { /* 삭제 버튼 */
+    background-color: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #fed7d7;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer; /* 마우스 올려놓을 시 커서를 손가락모양으로 변경 */
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.2s; /* 스타일전환 부드럽게 */
+    width: auto;
+}
+
+.bt-del:hover { /* 삭제 버튼 마우스 올려놓을 시 디자인 */
+    background-color: #e53e3e;
+    color: white;
+}
+
+.student-box tbody tr { /* 추가된 학생명단 */
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.student-box tbody tr:hover { /* 명단에 마우스 올려놓을 시 디자인 */
+    background-color: #ebf8ff;
+}
+
+.modal-overlay { /* 출결현황 팝업 오픈시 배경 어둡게 */
+    display: none;
+    position: fixed;
+    inset: 0; /* 상하좌우 여백 설정 */
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 100; /* 가장 먼저 보이게 위치 */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.open { /* 팝업 on/off */
+    display: flex;
+}
+
+.modal-box { /* 팝업창 본체 */
+    background: white;
+    border-radius: 12px;
+    width: 420px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+.modal-header { /* 팝업창 상단 제목 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.modal-close { /* 팝업창 닫기 버튼 */
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #a0aec0;
+    padding: 0;
+    width: auto;
+    line-height: 1;
+}
+
+.modal-close:hover { /* 닫기버튼 마우스 올려놓을 시 디자인 */
+    color: #e53e3e;
+}
+
+.modal-summary { /* 2번째 줄 */
+    display: flex;
+    gap: 10px;
+    padding: 14px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px;
+}
+
+.summary-chip { /* 두번째 줄 각 아이콘들 출석/지각/결석 */
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.chip-출석 { background: #c6f6d5; color: #276749; }
+.chip-지각 { background: #fefcbf; color: #7b6914; }
+.chip-결석 { background: #fed7d7; color: #9b2335; }
+
+.modal-body { /* 출결 날짜 및 현황(중앙 몸통 부분) */
+    overflow-y: auto;
+    padding: 10px 20px 20px;
+}
+
+.attendance-record { /* modal=body의 각 줄들 */
+    display: flex;
+    justify-content: space-between; /* 요소 양쪽 끝에 배치 */
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+.attendance-record:last-child { /* 팝업 내부의 학생명단 길어질 시 하단부 길이제한 제거 */
+    border-bottom: none;
+}
+
+.record-date { color: #4a5568; } /* 팝업내부 날짜 텍스트 */
+
+.record-status { /* 출석:지각:결석 토큰 */
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.status-출석 { background: #c6f6d5; color: #276749; }
+.status-지각 { background: #fefcbf; color: #7b6914; }
+.status-결석 { background: #fed7d7; color: #9b2335; }
+
+.modal-empty { /* 출석 기록이 없을 때 문구 */
+    text-align: center;
+    color: #a0aec0;
+    padding: 30px 0;
+    font-size: 14px;
+}
